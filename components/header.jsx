@@ -1,3 +1,5 @@
+'use client';
+
 import { SignedIn, SignedOut, SignInButton, SignUpButton, UserButton } from '@clerk/nextjs';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,29 +19,31 @@ const Header = () => {
                     />
                 </Link>
 
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3">
                     <SignedOut>
-                        <SignInButton mode="modal">
-                            <button className="px-4 py-2 rounded-md border hover:bg-muted transition">
+                        <SignInButton>
+                            <button className="px-4 py-2 text-sm rounded-md border border-input hover:bg-accent hover:text-accent-foreground transition">
                                 Sign In
                             </button>
                         </SignInButton>
-                        <SignUpButton mode="modal">
-                            <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer hover:bg-[#5a3de0] transition">
+                        <SignUpButton>
+                            <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm h-10 px-5 cursor-pointer hover:bg-[#5a3de0] transition">
                                 Sign Up
                             </button>
                         </SignUpButton>
                     </SignedOut>
-                    {/* Show the user button when the user is signed in */}
                     <SignedIn>
-                        <UserButton 
-                            afterSignOutUrl="/"
-                            appearance={{
-                                elements: {
-                                    avatarBox: "h-10 w-10"
-                                }
-                            }}
-                        />
+                        <div className="flex items-center">
+                            <UserButton 
+                                afterSignOutUrl="/"
+                                appearance={{
+                                    elements: {
+                                        userButtonAvatarBox: "w-10 h-10",
+                                        userButtonPopoverCard: "shadow-xl"
+                                    }
+                                }}
+                            />
+                        </div>
                     </SignedIn>
                 </div>
 
